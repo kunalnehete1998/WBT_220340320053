@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="temp.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+
+        let book = [
+            { bookid: 1, bookname: "kunal", bookprice: 200 },
+            { bookid: 2, bookname: "lalit", bookprice: 300 },
+            { bookid: 3, bookname: "kunal", bookprice: 400 }
+        ];
+        // window.addEventListener("DOMContentLoaded", () => {
+        $(()=>{    
+            function checkpresent(val) {
+                for (let i = 0; i < book.length; i++) {
+                    // console.log(book[i].bookid);
+                    if (book[i].bookid === val) {
+                        return false
+                        break;
+                    }
+                }
+                return true;
+            }
+            // let bookid = document.querySelector("#bookid");
+            let bookid = $("#bookid");
+            // bookid.addEventListener('blur', () => {
+            $(bookid).blur(()=>{
+                let id = parseInt(document.querySelector("#bookid").value);
+                // let id = $("#bookid").val;
+                console.log("Before function")
+                let res = checkpresent(id);
+                console.log("After function")
+                if (res) {
+                    document.querySelector("#msg1").innerHTML = "The book is Not found"
+                    // $("#msg1").html = "the book is not found";
+                } else {
+                    document.querySelector("#msg1").innerHTML = "The book is  found"
+                    // $("#msg1").html = "the book is  found";
+
+                    // let btn = document.querySelector("#btn");
+                    let btn = $("#btn");
+                    
+                    
+                    // btn.addEventListener('click',()=>{
+                        $(btn).click(()=>{
+                        let name = document.querySelector("#name").value;
+                        let price = document.querySelector("#price").value;
+                        let val1 ="";
+                        val1 += id;
+                        if(name){
+                            val1 +=" "+name;
+                        }
+                        if(price){
+                            val1 +=" "+price;
+                        }
+                        console.log(val1);
+                    });
+                }
+            });
+
+        });
+
+
+    </script>
+</head>
+
+<body>
+    <label for="bookid">Book Id:</label>
+    <input type="text" id="bookid">
+    <span id="msg1">Hello </span>
+
+    <br><br><label for="name">Book Name</label>
+    <input type="text" id="name">
+
+    <br><br><label for="price">Book Price</label>
+    <input type="text" id="price">
+
+    <br><br><button id="btn">Update Book</button>
+
+</body>
+
+</html>
